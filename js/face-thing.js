@@ -6,9 +6,26 @@ class FaceMaker {
             mouths: [] };
 
         this.canvasController =null;
+        this.previewButton = document.querySelector("#preview-button");
+        
+        this.previewState = "EDIT";
+
     }
 
+    setPreview() {
 
+        if (this.previewState === "EDIT") {
+            this.previewState = "PREVIEW";
+            this.previewButton.innerHTML = "EDIT";
+        } else {
+            this.previewState = "EDIT";
+            this.previewButton.innerHTML = "PREVIEW";
+        }
+        this.canvasController.changePreviewState(this.previewState);
+
+
+
+    }
 
     placeImages(type) {
         let headTable = document.querySelector(`#${type}`);
@@ -109,6 +126,7 @@ class FaceMaker {
         this.placeImages('hairs');
         this.placeImages('mouths');
         this.canvasController = new CanvasController(this.imageCollection, {width: 500,height: 500});
+        this.previewButton.addEventListener('click',this.setPreview.bind(this));
     }
 
 

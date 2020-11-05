@@ -107,6 +107,35 @@ class CanvasController {
 
     }
 
+    changePreviewState(previewState) {
+        this.mode = previewState;
+        let me = this;
+        // imageGroup.find('Circle').each(c => {c.opacity(1)})
+        let circles = this.layer.find('Circle');
+        let images = this.layer.find('Image');
+        let opc = 1;
+
+
+        if (this.mode === "PREVIEW") {
+            opc = 0;
+        }
+        circles.each(c => { c.opacity(opc) });
+
+        images.each((img) => {
+            if (me.mode === "EDIT")
+                img.strokeEnabled(true);
+            else
+                img.strokeEnabled(false);
+        })
+
+
+
+
+
+        this.layer.draw();
+
+    }
+
     addAnchor(group, x, y, name, flipped) {
         let stage = group.getStage();
         let layer = group.getLayer();
@@ -177,7 +206,7 @@ class CanvasController {
 
         let anchorX = activeAnchor.getX();
         let anchorY = activeAnchor.getY();
-       
+
         switch (activeAnchor.getName()) {
             case 'topLeft':
                 topRight.y(anchorY);
@@ -212,7 +241,7 @@ class CanvasController {
             if (ss.x > 0) {
                 image.scale({ x: -ss.x, y: ss.y })
             }
-            image.x(image.x()+width);
+            image.x(image.x() + width);
 
         }
 
@@ -292,11 +321,7 @@ class CanvasController {
             if (group != null) {
                 let img = group.find('Image')[0];
 
-                //border for edit mode
-                if (me.mode === "EDIT")
-                    img.strokeEnabled(true);
-                else
-                    img.strokeEnabled(false);
+
 
                 if (imageType === 'leftEye' || imageType == 'leftBrow') {
                     let ss = img.scale();

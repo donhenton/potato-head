@@ -1,0 +1,28 @@
+.head-img, .nose-img, .eye-img ,
+.brow-img,.mouth-img , .hair-img
+{
+   /* // width:20%; */
+    cursor: pointer;
+}
+.nose-img , .eye-img,
+.hair-img, .mouth-img,
+ .brow-img {
+    width: 70%;
+}
+
+/* table */
+#heads,#noses {
+    width:70%;
+}
+
+#konvaContainer {
+ 
+    border: thin solid red;
+}
+
+.selection-scroll {
+    height:400px;
+    overflow: auto;
+    border: thin solid blue;
+    padding: 10px;
+}

@@ -134,7 +134,7 @@ class FaceMaker {
         this.placeImages('hairs');
         this.placeImages('mouths');
         this.placeImages('ears');
-        this.canvasController = new CanvasController(this.imageCollection, { width: 600, height: 800 });
+        this.canvasController = new CanvasController(this.imageCollection, { width: 700, height: 800 });
         this.previewButton.addEventListener('click', this.setPreview.bind(this));
     }
 

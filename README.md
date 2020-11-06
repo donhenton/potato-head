@@ -12,7 +12,7 @@ Located at https://donhenton.github.io/potato-head/public_html/index.html
 - you may have to move things to get access
 - the Preview/Edit button will hide and show the grey handles and borders
 
-Samples for other styles
+## Samples for other styles
 
 https://www.pinterest.com/pin/10062799156845491/
 https://www.pinterest.com/pin/780319072906349524/

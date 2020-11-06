@@ -1,13 +1,15 @@
 class FaceMaker {
     constructor() {
         this.message = "get a job"
-        this.imageCollection = { heads: [], noses: [], eyes: [], 
-            brows:[], hairs: [],
-            mouths: [] };
+        this.imageCollection = {
+            heads: [], noses: [], eyes: [],
+            brows: [], hairs: [],
+            mouths: [], ears: []
+        };
 
-        this.canvasController =null;
+        this.canvasController = null;
         this.previewButton = document.querySelector("#preview-button");
-        
+
         this.previewState = "EDIT";
 
     }
@@ -67,7 +69,13 @@ class FaceMaker {
             case "mouths":
                 cssClass = "mouths-img-cell";
                 imgText = '<img class="mouth-img" src="images/mouthsimg/mouths';
-                numImages = 5;
+                numImages = 6;
+
+                break;
+            case "ears":
+                cssClass = "ears-img-cell";
+                imgText = '<img class="ear-img" src="images/earsimg/ears';
+                numImages = 6;
 
                 break;
 
@@ -95,9 +103,9 @@ class FaceMaker {
                 if (idx <= numImages) {
                     cell.innerHTML = imgText + `${idx}.png">`;
                     let iNode = cell.childNodes[0];
-                    
+
                     this.imageCollection[type].push(iNode);
-                    let clickMethod = (ev) => this.selectImage(ev, type, currentIdx-1);
+                    let clickMethod = (ev) => this.selectImage(ev, type, currentIdx - 1);
                     iNode.addEventListener('click', clickMethod)
 
                 }
@@ -113,8 +121,8 @@ class FaceMaker {
 
 
     selectImage(ev, type, index) {
-        
-        this.canvasController.swapImage(type,index );
+
+        this.canvasController.swapImage(type, index);
     }
 
 
@@ -125,8 +133,9 @@ class FaceMaker {
         this.placeImages('brows');
         this.placeImages('hairs');
         this.placeImages('mouths');
-        this.canvasController = new CanvasController(this.imageCollection, {width: 600,height: 800});
-        this.previewButton.addEventListener('click',this.setPreview.bind(this));
+        this.placeImages('ears');
+        this.canvasController = new CanvasController(this.imageCollection, { width: 600, height: 800 });
+        this.previewButton.addEventListener('click', this.setPreview.bind(this));
     }
 
 

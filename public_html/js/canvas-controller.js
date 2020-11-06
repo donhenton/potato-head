@@ -32,7 +32,7 @@ class CanvasController {
                 }
             },
             leftBrow: {
-                group: null, idx: 0, flipFactor: 1, initPos: {
+                group: null, idx: 0, initPos: {
                     x: 290, y: 90, width: 200, height: 100
 
                 }
@@ -54,11 +54,23 @@ class CanvasController {
                     x: 50, y: -50, width: 500, height: 500
                 }
 
+            },
+            leftEar: {
+                group: null, idx: 0, initPos: {
+                    x: 470, y: 170, width: 100, height: 175
+
+                }
+            },
+            rightEar: {
+                group: null, idx: 0, initPos: {
+                    x: 110, y: 170,  width: 100, height: 175
+
+                }
             }
 
         }
         let gKeys = Object.keys(this.groupsCollection);
-        for (var j=0;j<gKeys.length;j++) {
+        for (var j = 0; j < gKeys.length; j++) {
             this.groupsCollection[gKeys[j]].initPos.y += 150;
             this.groupsCollection[gKeys[j]].initPos.x += 20;
 
@@ -111,8 +123,14 @@ class CanvasController {
         let rightBrowImage = this.imageCollection['brows'][0];
         this.groupsCollection.rightBrow.group =
             this.initializeImage(this.groupsCollection.rightBrow, rightBrowImage.src, 'rightBrow');
+        //flip
+        let leftEarImage = this.imageCollection['ears'][0];
+        this.groupsCollection.leftEar.group =
+            this.initializeImage(this.groupsCollection.leftEar, leftEarImage.src, 'leftEar');
 
-
+        let rightEarImage = this.imageCollection['ears'][0];
+        this.groupsCollection.rightEar.group =
+            this.initializeImage(this.groupsCollection.rightEar, rightEarImage.src, 'rightEar');
 
 
     }
@@ -291,7 +309,8 @@ class CanvasController {
         imageGroup.setAttr("imageType", imageType);
         this.layer.add(imageGroup);
 
-        if (imageType === 'leftEye' || imageType == 'leftBrow') {
+        if (imageType === 'leftEye' || imageType === 'leftBrow' || imageType === 'leftEar') {
+            console.log(`flipped ${imageType}`)
             this.addAnchor(imageGroup, -imageInfo.initPos.width, 0, 'topLeft', true);
             this.addAnchor(imageGroup, 0, imageInfo.initPos.height, 'bottomRight', true);
             this.addAnchor(imageGroup, 0, 0, 'topRight', true);
@@ -359,7 +378,20 @@ class CanvasController {
             newImage.src = foundImage.src;
             return;
         }
+        if (groupType === 'ears') {
+            i1 = this.groupsCollection["leftEar"].group.find('Image')[0];
+            i2 = this.groupsCollection["rightEar"].group.find('Image')[0];
+            newImage = new Image();
+            newImage.onload = function () {
 
+                i1.image(newImage);
+                i2.image(newImage);
+                me.layer.draw();
+
+            };
+            newImage.src = foundImage.src;
+            return;
+        }
 
 
 
@@ -416,7 +448,7 @@ class CanvasController {
 
 
 
-                if (imageType === 'leftEye' || imageType == 'leftBrow') {
+                if (imageType === 'leftEye' || imageType === 'leftBrow' || imageType === 'leftEar' ) {
                     let ss = img.scale();
                     img.scale({ x: -ss.x, y: ss.y })
                 }

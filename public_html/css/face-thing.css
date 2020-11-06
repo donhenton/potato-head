@@ -1,12 +1,12 @@
 .head-img, .nose-img, .eye-img ,
-.brow-img,.mouth-img , .hair-img
+.brow-img,.mouth-img , .hair-img, .ear-img
 {
    /* // width:20%; */
     cursor: pointer;
 }
 .nose-img , .eye-img,
 .hair-img, .mouth-img,
- .brow-img {
+ .brow-img, .ear-img {
     width: 50%;
 }
 

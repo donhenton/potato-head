@@ -7,12 +7,12 @@
 .nose-img , .eye-img,
 .hair-img, .mouth-img,
  .brow-img {
-    width: 70%;
+    width: 50%;
 }
 
 /* table */
 #heads,#noses {
-    width:70%;
+    width:50%;
 }
 
 #konvaContainer {

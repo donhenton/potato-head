@@ -309,6 +309,42 @@ class CanvasController {
 
     }
 
+
+    swapImage(groupType, index) {
+        console.log(`zzzz ${groupType} idx ${index}`)
+        let me = this;
+        let groupKey = "";
+
+        switch (groupType) {
+            case "heads" :
+                groupKey = "head";
+                break;
+            default:
+                break;
+
+
+
+
+
+        };
+
+
+        let foundImage = this.imageCollection[groupType][index];
+        let newImage = new Image();
+        let currentKonvaImage = this.groupsCollection[groupKey].group.find('Image')[0];
+        newImage.onload=function() {
+
+            currentKonvaImage.image(newImage)
+            me.layer.draw();
+
+        };
+       
+        newImage.src = foundImage.src;
+        
+
+    }
+
+
     initialDraw() {
         let me = this;
         let imgKeys = Object.keys(this.groupsCollection);

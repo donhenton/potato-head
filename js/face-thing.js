@@ -97,7 +97,7 @@ class FaceMaker {
                     let iNode = cell.childNodes[0];
                     
                     this.imageCollection[type].push(iNode);
-                    let clickMethod = (ev) => this.selectImage(ev, type, currentIdx);
+                    let clickMethod = (ev) => this.selectImage(ev, type, currentIdx-1);
                     iNode.addEventListener('click', clickMethod)
 
                 }
@@ -113,8 +113,8 @@ class FaceMaker {
 
 
     selectImage(ev, type, index) {
-        console.log(`asking for ${type} ${index}`);
-        //canvasController.updateImage(type,index);
+        
+        this.canvasController.swapImage(type,index );
     }
 
 
@@ -125,7 +125,7 @@ class FaceMaker {
         this.placeImages('brows');
         this.placeImages('hairs');
         this.placeImages('mouths');
-        this.canvasController = new CanvasController(this.imageCollection, {width: 500,height: 500});
+        this.canvasController = new CanvasController(this.imageCollection, {width: 600,height: 800});
         this.previewButton.addEventListener('click',this.setPreview.bind(this));
     }
 

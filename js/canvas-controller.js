@@ -311,7 +311,7 @@ class CanvasController {
 
 
     swapImage(groupType, index) {
-        console.log(`zzzz ${groupType} idx ${index}`)
+         
         let me = this;
         let groupKey = "";
 
